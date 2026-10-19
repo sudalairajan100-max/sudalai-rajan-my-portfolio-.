@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Sudalai Rajan</title>
+  <meta name="description" content="Get in touch with Sudalai Rajan via LinkedIn, GitHub, Instagram or email." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <main class="main">
+    <header class="page-head reveal">
+      <p class="eyebrow">// Dashboard 05</p>
+      <h1>Let's <span class="grad-text">Connect</span></h1>
+      <p>Interested in collaborating on an AI, web or game project — or just want to say hi? Reach out below.</p>
+    </header>
+
+    <section class="grid g3 reveal">
+      <a class="card hover social-card" href="https://github.com/sudalairajan100-max" target="_blank" rel="noopener noreferrer"><div class="card-icon" data-icon="github"></div><div><h3>GitHub</h3><p>sudalairajan100-max</p></div></a>
+      <a class="card hover social-card" href="https://www.linkedin.com/in/sudalai-rajan-s-467a87338" target="_blank" rel="noopener noreferrer"><div class="card-icon" data-icon="linkedin"></div><div><h3>LinkedIn</h3><p>Sudalai Rajan S</p></div></a>
+      <a class="card hover social-card" href="https://www.instagram.com/godofnatural/" target="_blank" rel="noopener noreferrer"><div class="card-icon" data-icon="instagram"></div><div><h3>Instagram</h3><p>@godofnatural</p></div></a>
+      <a class="card hover social-card" href="mailto:sudalairajan100@gmail.com"><div class="card-icon">✉️</div><div><h3>Email</h3><p>sudalairajan100@gmail.com</p></div></a>
+      <a class="card hover social-card" href="tel:+916379798678"><div class="card-icon">📞</div><div><h3>Mobile</h3><p>+91 63797 98678</p></div></a>
+    </section>
+
+    <section class="grid g2 reveal" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+      <form class="card" id="contact-form" novalidate>
+        <h3 style="margin-bottom:16px">Send a message</h3>
+        <div class="form-grid">
+          <div><label for="c-name">Name</label><input class="field" id="c-name" name="name" maxlength="80" autocomplete="name" /><div class="error-text"></div></div>
+          <div><label for="c-email">Email</label><input class="field" id="c-email" name="email" type="email" maxlength="120" autocomplete="email" /><div class="error-text"></div></div>
+          <div class="full"><label for="c-subject">Subject</label><input class="field" id="c-subject" name="subject" maxlength="120" /><div class="error-text"></div></div>
+          <div class="full"><label for="c-message">Message</label><textarea class="field" id="c-message" name="message" maxlength="2000"></textarea><div class="error-text"></div></div>
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-top:8px">Open in email app</button>
+        <div class="alert" id="form-alert" role="status"></div>
+      </form>
+
+      <div class="card">
+        <h3>Email</h3>
+        <p>This site has no server, so the form opens your own email app with the message filled in — nothing is sent automatically.</p>
+        <label for="email-copy" style="margin-top:16px">Email address</label>
+        <div class="input-row">
+          <input id="email-copy" class="field" readonly />
+          <button class="btn btn-sm" id="copy-btn" type="button">Copy</button>
+        </div>
+        <div class="alert" id="copy-alert" role="status"></div>
+        
+      </div>
+    </section>
+  </main>
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      // ✏️ Put your real email address here:
+      var CONTACT_EMAIL = "sudalairajan100@gmail.com";
+
+      document.querySelectorAll("[data-icon]").forEach(function (el) { el.innerHTML = icon(el.getAttribute("data-icon")); });
+      var emailField = document.getElementById("email-copy");
+      emailField.value = CONTACT_EMAIL;
+      var configured = CONTACT_EMAIL.indexOf("example.com") === -1;
+
+      function show(el, msg, ok) { el.textContent = msg; el.className = "alert show " + (ok ? "ok" : "err"); }
+
+      document.getElementById("copy-btn").addEventListener("click", function () {
+        var a = document.getElementById("copy-alert");
+        if (!configured) return show(a, "The email address hasn't been set yet.", false);
+        (navigator.clipboard ? navigator.clipboard.writeText(CONTACT_EMAIL) : Promise.reject())
+          .then(function () { show(a, "Email copied to clipboard.", true); })
+          .catch(function () { emailField.select(); show(a, "Press Ctrl+C to copy the selected email.", false); });
+      });
+
+      var form = document.getElementById("contact-form");
+      var rules = {
+        name: function (v) { return v.length >= 2 || "Please enter your name."; },
+        email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Please enter a valid email."; },
+        subject: function (v) { return v.length >= 3 || "Please add a subject."; },
+        message: function (v) { return v.length >= 10 || "Message should be at least 10 characters."; },
+      };
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var ok = true, data = {};
+        Object.keys(rules).forEach(function (k) {
+          var f = form.elements[k], v = f.value.trim(), r = rules[k](v);
+          data[k] = v;
+          f.classList.toggle("invalid", r !== true);
+          f.parentElement.querySelector(".error-text").textContent = r === true ? "" : r;
+          if (r !== true) ok = false;
+        });
+        var alertEl = document.getElementById("form-alert");
+        if (!ok) return show(alertEl, "Please fix the highlighted fields.", false);
+        if (!configured) return show(alertEl, "The site owner hasn't set an email address yet. Please reach out on LinkedIn instead.", false);
+        var body = data.message + "\n\n— " + data.name + " (" + data.email + ")";
+        window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(data.subject) + "&body=" + encodeURIComponent(body);
+        show(alertEl, "Your email app should open with the message ready. Press Send there to deliver it.", true);
+      });
+    })();
+  </script>
+</body>
+</html>

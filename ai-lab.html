@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Lab — Sudalai Rajan</title>
+  <meta name="description" content="Interactive AI concept explorer and browser-based educational AI demos by Sudalai Rajan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <main class="main">
+    <header class="page-head reveal">
+      <p class="eyebrow">// Dashboard 04</p>
+      <h1>AI <span class="grad-text">Lab</span></h1>
+      <p>My space for learning and experimenting with GenAI, ML, deep learning and AI agents.</p>
+    </header>
+
+    <div class="notice reveal" role="note">⚠️ <span>The demos below are <strong>educational demonstrations</strong> that run fully in your browser. They use simple rules and templates — they are not real trained AI models and send no data anywhere.</span></div>
+
+    <section class="reveal">
+      <div class="section-title"><h2>AI concept explorer</h2></div>
+      <div class="explorer">
+        <div class="explorer-tabs" id="explorer-tabs" role="tablist" aria-label="AI concepts"></div>
+        <div class="card explorer-panel" id="explorer-panel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-title"><h2>Mini demos</h2></div>
+      <div class="grid g3">
+        <div class="card">
+          <span class="badge tag">Demo 1 · Rule-based</span>
+          <h3 style="margin-top:10px">Chatbot</h3>
+          <p>Matches keywords to pre-written answers.</p>
+          <div class="chat-box" id="chat-box" aria-live="polite"></div>
+          <form class="input-row" id="chat-form">
+            <input type="text" placeholder="Ask something…" aria-label="Chat message" maxlength="200" />
+            <button class="btn btn-primary btn-sm" type="submit">Send</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <span class="badge tag">Demo 2 · Text analysis</span>
+          <h3 style="margin-top:10px">Text analyser</h3>
+          <p>Counts words, characters and sentences, and finds frequent words.</p>
+          <textarea id="text-input" style="margin-top:14px" aria-label="Text to analyse">Artificial intelligence helps people. Python makes artificial intelligence easy to learn!</textarea>
+          <div class="results">
+            <div class="stat"><strong id="t-words">0</strong><span>Words</span></div>
+            <div class="stat"><strong id="t-chars">0</strong><span>Characters</span></div>
+            <div class="stat"><strong id="t-sent">0</strong><span>Sentences</span></div>
+          </div>
+          <p style="margin-top:14px">Frequent words:</p>
+          <div class="badges" id="t-top" style="margin-top:8px"></div>
+        </div>
+
+        <div class="card">
+          <span class="badge tag">Demo 3 · Templates</span>
+          <h3 style="margin-top:10px">AI project idea generator</h3>
+          <p>Combines predefined categories and templates.</p>
+          <label for="idea-cat" style="margin-top:14px">Category</label>
+          <select id="idea-cat"></select>
+          <button class="btn btn-primary" id="idea-btn" type="button" style="margin-top:12px;width:100%;justify-content:center">Generate idea</button>
+          <div class="idea-out" id="idea-out" aria-live="polite"><span class="muted">Pick a category and click Generate.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/ai-lab.js"></script>
+</body>
+</html>

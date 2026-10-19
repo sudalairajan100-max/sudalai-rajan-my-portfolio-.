@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — Sudalai Rajan</title>
+  <meta name="description" content="Searchable dashboard of Sudalai Rajan's GitHub projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <main class="main">
+    <header class="page-head reveal">
+      <p class="eyebrow">// Dashboard 03</p>
+      <h1>My <span class="grad-text">Projects</span></h1>
+      <p>Repositories from my GitHub. Search or filter by category. <span id="project-count" class="badge tag"></span></p>
+    </header>
+
+    <div class="toolbar reveal">
+      <label class="search" for="project-search" style="margin:0">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="project-search" type="search" placeholder="Search projects, tech…" aria-label="Search projects" />
+      </label>
+      <button class="chip active" data-filter="All" aria-pressed="true">All</button>
+      <button class="chip" data-filter="Python" aria-pressed="false">Python</button>
+      <button class="chip" data-filter="Web Development" aria-pressed="false">Web Development</button>
+      <button class="chip" data-filter="AI/ML" aria-pressed="false">AI/ML</button>
+      <button class="chip" data-filter="Other" aria-pressed="false">Other</button>
+    </div>
+
+    <section class="grid g3" id="project-grid" aria-live="polite"></section>
+
+    <section class="card reveal">
+      <h3>More on GitHub</h3>
+      <p>See all repositories, commits and updates on my profile.</p>
+      <div class="btn-row" style="margin-top:14px"><a class="btn btn-primary" href="https://github.com/sudalairajan100-max" target="_blank" rel="noopener noreferrer">Open GitHub profile</a></div>
+    </section>
+  </main>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/projects.js"></script>
+</body>
+</html>
